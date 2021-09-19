@@ -1,0 +1,49 @@
+﻿<Window x:Class="RandomPasswordGenerator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RandomPasswordGenerator"
+        mc:Ignorable="d"
+        Title="Random Password Generator" Height="270" Width="480">
+    <Window.Resources>
+        <RoutedUICommand x:Key="EnterPressed"></RoutedUICommand>
+    </Window.Resources>
+    <Window.CommandBindings>
+        <CommandBinding Command="{StaticResource EnterPressed}" Executed="GeneratePassWord"></CommandBinding>
+    </Window.CommandBindings>
+
+    <Window.InputBindings>
+        <KeyBinding Command="{StaticResource EnterPressed}" Key="Enter"/>
+    </Window.InputBindings>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        
+        <Label>Random Password Generator</Label>
+
+        <StackPanel Grid.Row="1" Grid.Column="0" Margin="5,0,0,0">
+            <Label>Include:</Label>
+            <CheckBox x:Name="SpecialCharactersCheckBox">
+                <TextBlock Text="Special Characters" />
+            </CheckBox>
+            <CheckBox x:Name="NumbersCheckBox">
+                <TextBlock Text="Numbers" />
+            </CheckBox>
+            <Label>Size of password:</Label>
+            <TextBox x:Name="NumberOfLettersTextBox"/>
+            <Button x:Name="btnGenerate" Margin="0,5,0,0" Click="GeneratePassWord">Generate Password</Button>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="1" >
+            <TextBox x:Name="PasswordTextBox" IsReadOnly="True" Width="Auto" Height="20"/>
+        </StackPanel>
+
+    </Grid>
+</Window>
